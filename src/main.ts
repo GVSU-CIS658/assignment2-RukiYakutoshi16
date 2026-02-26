@@ -66,11 +66,12 @@ function applyCream(input: HTMLInputElement): void {
 }
 
 function applySyrup(input: HTMLInputElement): void {
-  // TODO: implement this function
+  const drink = syrups[input.value];
+  document.documentElement.style.setProperty("--syrup-color", drink);
 }
 
 function setupSyrupListeners(): void {
-  // TODO: implement this function
+  document.getElementsByName("syrup").forEach(x => x.addEventListener("change", (e) => applySyrup(e.target as HTMLInputElement)));
 }
 
 setupSyrupListeners();
