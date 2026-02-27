@@ -94,21 +94,20 @@ function setupBaseListeners(): void {
 setupBaseListeners();
 
 function OnLoad() {
-  var radios = [...document.querySelectorAll('input[type=radio]')].filter(x => x.checked == true);
+  var radios = [...document.querySelectorAll<HTMLInputElement>('input[type=radio]')].filter(x => x.checked == true);
   radios.forEach(e => {
-    console.log(e.attributes);
-    switch (e.attributes["name"]["nodeValue"]) {
+    switch (e.name) {
       case "temperature":
-        applyTemperature(e.attributes.value);
+        applyTemperature(e);
         break;
       case "base":
-        applyBase(e.attributes.value);
+        applyBase(e);
         break;
       case "cream":
-        applyCream(e.attributes.value);
+        applyCream(e);
         break;
       case "syrup":
-        applySyrup(e.attributes.value);
+        applySyrup(e);
         break;
       default:
         break;
