@@ -77,18 +77,44 @@ function setupSyrupListeners(): void {
 setupSyrupListeners();
 
 function setupCreamListeners(): void {
-  // TODO: implement this function
+  document.getElementsByName("cream").forEach(x => x.addEventListener("change", (e) => applyCream(e.target as HTMLInputElement)));
 }
 setupCreamListeners();
 
 function setupTemperatureListeners(): void {
-  // TODO: implement this function
+  document.getElementsByName("temperature").forEach(x => x.addEventListener("change", (e) => applyTemperature(e.target as HTMLInputElement)));
 }
 
 setupTemperatureListeners();
 
 function setupBaseListeners(): void {
-  // TODO: implement this function
+  document.getElementsByName("base").forEach(x => x.addEventListener("change", (e) => applyBase(e.target as HTMLInputElement)));
 }
 
 setupBaseListeners();
+
+function OnLoad() {
+  var radios = [...document.querySelectorAll('input[type=radio]')].filter(x => x.checked == true);
+  radios.forEach(e => {
+    console.log(e.attributes);
+    switch (e.attributes["name"]["nodeValue"]) {
+      case "temperature":
+        applyTemperature(e.attributes.value);
+        break;
+      case "base":
+        applyBase(e.attributes.value);
+        break;
+      case "cream":
+        applyCream(e.attributes.value);
+        break;
+      case "syrup":
+        applySyrup(e.attributes.value);
+        break;
+      default:
+        break;
+    }
+  });
+}
+
+
+OnLoad();
